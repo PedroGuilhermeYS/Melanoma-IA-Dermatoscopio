@@ -1,0 +1,58 @@
+# ── Training scripts ──────────────────────────────────────────────
+train*.py
+augmentation*.py
+augment*.py
+epoch_reporter*.py
+
+# ── Model weights (hosted on Hugging Face instead) ────────────────
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+checkpoints/
+saved_models/
+epoch_models/
+
+# ── Dataset files ─────────────────────────────────────────────────
+*.csv
+!results/threshold_key_indicators.csv
+splits/
+dataset*/
+data/
+
+# ── Local config and paths ────────────────────────────────────────
+config_local*.yaml
+config_local*.json
+*.env
+
+# ── Python ────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# ── Jupyter ───────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ── Logs and reports ──────────────────────────────────────────────
+*.log
+*.html
+reports/
+runs/
+wandb/
+
+# ── OS ────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── IDE ───────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp

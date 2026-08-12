@@ -1,0 +1,18 @@
+# Requirements for EVA-02 Melanoma Classifier
+# Covers: predict.py + gradcam_viewerV04.py
+# GPU: NVIDIA RTX 5070 Ti (CUDA 12.8)
+#
+# Step 1 — Install PyTorch (must use official index for CUDA builds):
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+#
+# Step 2 — Install remaining dependencies:
+#   pip install -r requirements.txt
+
+#torch==2.10.0+cu128
+#torchvision==0.25.0+cu128
+timm==1.0.22
+PyQt6==6.10.1
+pandas==2.3.3
+numpy==2.2.6
+opencv-python==4.12.0.88
+pillow==12.0.0

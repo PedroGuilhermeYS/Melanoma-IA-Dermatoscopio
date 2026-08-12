@@ -1,0 +1,24 @@
+Creative Commons Attribution-NonCommercial 4.0 International License
+
+Copyright (c) 2026 Fabian Wolz
+
+You are free to:
+  Share — copy and redistribute the material in any medium or format
+  Adapt — remix, transform, and build upon the material
+
+Under the following terms:
+  Attribution — You must give appropriate credit, provide a link to the license,
+                and indicate if changes were made.
+  NonCommercial — You may not use the material for commercial purposes.
+
+No additional restrictions — You may not apply legal terms or technological measures
+that legally restrict others from doing anything the license permits.
+
+Full license text: https://creativecommons.org/licenses/by-nc/4.0/legalcode
+
+---
+
+Note: This license applies to the code and model weights in this repository.
+The training datasets (HAM10000, BCN20000, ISIC 2018, ISIC 2019) are separately
+licensed under CC-BY-NC 4.0 by their respective authors and are not redistributed
+here. See https://isic-archive.com for dataset access and terms.
