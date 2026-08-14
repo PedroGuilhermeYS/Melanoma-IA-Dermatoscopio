@@ -1,0 +1,26 @@
+# CUDA/GPU image for the inference API server. Requires the NVIDIA Container Toolkit on the host (docker run --gpus all ... / docker compose ... --gpus all). Same image otherwise as Dockerfile (CPU); only the PyTorch install step and base image differ.
+FROM nvidia/cuda:12.8.0-runtime-ubuntu22.04
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3.11 python3-pip python3.11-venv \
+    libgl1 libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /srv/app
+
+RUN pip install --no-cache-dir torch==2.6.0 torchvision==0.21.0 \
+    --index-url https://download.pytorch.org/whl/cu128
+
+COPY requirements-api.txt .
+RUN pip install --no-cache-dir -r requirements-api.txt
+
+COPY melanoma_ia/ melanoma_ia/
+COPY results/ results/
+
+ENV MELANOMA_DEVICE=cuda
+EXPOSE 8000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=60s \
+    CMD python3 -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health').read()" || exit 1
+
+CMD ["uvicorn", "melanoma_ia.api.main:create_app", "--factory", "--host", "0.0.0.0", "--port", "8000"]

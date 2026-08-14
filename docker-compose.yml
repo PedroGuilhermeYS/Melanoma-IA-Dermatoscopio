@@ -1,0 +1,42 @@
+# Brings up the inference API server. The camera service (raspberry-pi-camera-web) runs separately. It is reached via MELANOMA_CAMERA_URL in .env
+# Usage:
+#   cp .env.example .env  
+#   docker compose up api
+#
+# To also run the orchestrator (polls the camera + logs predictions locally) against a real camera service reachable from this host:
+#   docker compose --profile orchestrator up
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${MELANOMA_API_PORT:-8000}:8000"
+    env_file:
+      - .env
+    volumes:
+      - hf-cache:/root/.cache/huggingface
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health').read()"]
+      interval: 30s
+      timeout: 5s
+      start_period: 60s
+      retries: 3
+
+  orchestrator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    profiles: ["orchestrator"]
+    env_file:
+      - .env
+    volumes:
+      - hf-cache:/root/.cache/huggingface
+      - ./results:/srv/app/results
+    entrypoint: ["python", "-m", "melanoma_ia.pipeline.orchestrator"]
+    depends_on:
+      - api
+
+volumes:
+  hf-cache:

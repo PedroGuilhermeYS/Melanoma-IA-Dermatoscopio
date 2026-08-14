@@ -1,0 +1,5 @@
+# Note: pulls in full opencv-python, which conflicts with opencv-python-headless in requirements.txt if both are installed in the same environment. Use a separate venv for the GUI, or uninstall opencv-python-headless first with pip uninstall opencv-python-headless.
+-r requirements.txt
+PyQt6==6.10.1
+pandas==2.3.3
+opencv-python==4.12.0.88

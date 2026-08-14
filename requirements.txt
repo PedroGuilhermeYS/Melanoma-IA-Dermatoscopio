@@ -4,6 +4,12 @@
 #
 # Step 1 — Install PyTorch (must use official index for CUDA builds):
 #   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+
+#  # CPU only:
+#   pip install torch==2.6.0 torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cpu
+#
+#   # NVIDIA GPU (CUDA 12.8, e.g. RTX 5070 Ti):
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
 #
 # Step 2 — Install remaining dependencies:
 #   pip install -r requirements.txt
